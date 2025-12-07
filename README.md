@@ -1,3 +1,1 @@
-Метод для расчета продукции в MethodCalculate.txt
-Скрипт базы в MethodCalculate.txt
-Бэкап бд в SemyonovaDemo0202.bak
+Метод для расчета продукции в MethodCalculate.txt. cкрипт базы в MethodCalculate.txt бэкап бд в SemyonovaDemo0202.bak
