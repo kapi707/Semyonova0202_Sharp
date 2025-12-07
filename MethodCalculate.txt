@@ -1,0 +1,51 @@
+   private int CalculateMaterialRequirement(int productTypeId,  int materialTypeId, int requiredQuantity, int stockQuantity, double param1, double param2)
+   {
+       try
+       {
+           // Находим необходимые в базе переменные
+           ProductTypes productType = db.ProductTypes.FirstOrDefault(x => x.ID == productTypeId);
+           MaterialTypes materialType = db.MaterialTypes.FirstOrDefault(x => x.ID == materialTypeId);
+
+           // Проверяем существование типов и корректность входных данных
+           if (productType == null || materialType == null ||
+               requiredQuantity < 0 || stockQuantity < 0 ||
+               param1 <= 0 || param2 <= 0)
+           {
+               return -1;
+           }
+
+           // Проверяем, что коэффициенты не равны null
+           if (productType.LossCoefficient == null || materialType.LossCoefficient == null)
+           {
+               return -1;
+           }
+
+           // Получаем коэффициенты
+           double coeffProduct = productType.LossCoefficient.Value;
+           double coeffMaterial = materialType.LossCoefficient.Value;
+
+           // Сколько нужно произвести (учитываем склад)
+           int productionNeeded = Math.Max(0, requiredQuantity - stockQuantity);
+
+           if (productionNeeded == 0)
+           {
+               return 0;
+           }
+
+           // Материал на одну единицу продукции
+           double materialPerUnit = param1 * param2 * coeffProduct;
+
+           // Учитываем брак материала
+           double materialWithLoss = materialPerUnit * (1 + coeffMaterial / 100.0);
+
+           // Общее количество материала
+           double totalMaterial = materialWithLoss * productionNeeded;
+
+           // Округляем до целого вверх
+           return (int)Math.Ceiling(totalMaterial);
+       }
+       catch
+       {
+           return -1;
+       }
+   }
