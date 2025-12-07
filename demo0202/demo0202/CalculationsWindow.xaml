@@ -1,0 +1,81 @@
+﻿<Window x:Class="demo0202.CalculationsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Расчет потребности в материалах" Height="500" Width="600"
+        WindowStartupLocation="CenterOwner" Icon="/Новые технологии (1).png"
+         FontFamily="Bahnschrift Light SemiCondensed">
+
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Расчет потребности в материалах" 
+                   FontSize="18" FontWeight="Bold" Margin="0,0,0,20"/>
+
+        <TextBlock Grid.Row="1" Text="Тип продукции:" FontWeight="Bold"/>
+        <ComboBox Grid.Row="2" x:Name="CmbProductType" DisplayMemberPath="TypeName"
+                  Margin="0,5,0,15" Height="30"/>
+
+        <TextBlock Grid.Row="3" Text="Тип материала:" FontWeight="Bold"/>
+        <ComboBox Grid.Row="4" x:Name="CmbMaterialType" DisplayMemberPath="TypeName"
+                  Margin="0,5,0,15" Height="30"/>
+
+        <Grid Grid.Row="5" Margin="0,0,0,15">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0">
+                <TextBlock Text="Количество на складе:" FontWeight="Bold"/>
+                <TextBox x:Name="TxtStockQuantity" Text="0" Margin="0,5,0,0" Height="25"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="2">
+                <TextBlock Text="Требуемое количество:" FontWeight="Bold"/>
+                <TextBox x:Name="TxtRequiredQuantity" Text="0" Margin="0,5,0,0" Height="25"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="6" Margin="0,0,0,15">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0">
+                <TextBlock Text="Параметр 1:" FontWeight="Bold"/>
+                <TextBox x:Name="TxtParam1" Text="0" Margin="0,5,0,0" Height="25"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="2">
+                <TextBlock Text="Параметр 2:" FontWeight="Bold"/>
+                <TextBox x:Name="TxtParam2" Text="0" Margin="0,5,0,0" Height="25"/>
+            </StackPanel>
+        </Grid>
+
+        <Button Grid.Row="7" Content="Рассчитать" Click="BtnCalculate_Click"
+                Background="#FF0C4882" Foreground="White" FontSize="14"
+                Height="35" Width="120" HorizontalAlignment="Left"/>
+
+        <Border Grid.Row="8" Background="#FFF0F8FF" BorderBrush="#FF0C4882" 
+                BorderThickness="1" Margin="0,15,0,0">
+            <StackPanel Margin="10">
+                <TextBlock Text="Результат расчета:" FontWeight="Bold" FontSize="14"/>
+                <TextBlock x:Name="TxtResult" FontSize="16" FontWeight="Bold" 
+                          Foreground="#FF0C4882" Margin="0,5,0,0"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

@@ -1,0 +1,32 @@
+﻿<Window x:Class="demo0202.ProductsCatalogWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Каталог продукции" Height="450" Width="800" Icon="/Новые технологии (1).png"
+        FontFamily="Bahnschrift Light SemiCondensed">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
+            <TextBlock Text="Каталог продукции" FontSize="16" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,20,0"/>
+            <ComboBox x:Name="CmbProductTypeFilter" Width="200"    DisplayMemberPath="TypeName" Margin="0,0,10,0" SelectionChanged="Filter_SelectionChanged"/>
+            <ComboBox x:Name="CmbMaterialFilter" Width="200"  DisplayMemberPath="MaterialName" Margin="0,0,10,0" SelectionChanged="Filter_SelectionChanged"/>
+            <Button Content="Сбросить фильтры" Click="BtnResetFilters_Click"  Margin="0,0,10,0" Background="#FF0C4882"/>
+        </StackPanel>
+        <DataGrid Grid.Row="1" x:Name="DgProducts" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Наименование" Binding="{Binding ProductName}" Width="*"/>
+                <DataGridTextColumn Header="Артикул" Binding="{Binding Article}" Width="100"/>
+                <DataGridTextColumn Header="Тип" Binding="{Binding ProductTypes.TypeName}" Width="150"/>
+                <DataGridTextColumn Header="Материал" Binding="{Binding Materials.MaterialName}" Width="120"/>
+                <DataGridTextColumn Header="Цена" Binding="{Binding MinPrice, StringFormat={}{0:N2} ₽}" Width="100"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StatusBar Grid.Row="2">
+            <TextBlock x:Name="TxtProductCount"/>
+        </StatusBar>
+    </Grid>
+</Window>
